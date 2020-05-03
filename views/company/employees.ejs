@@ -1,0 +1,55 @@
+<% layout('layout2') %>
+
+<div id="wrapper">
+
+    <% include ../partials/sidebar%>
+
+
+
+    <div id="page-content-wrapper">
+        <% include ../partials/navbar%>
+        <div class="container-fluid main_body">
+            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+            <div class="ul_links">
+                <ul>
+                    <li><a href="/home">Home</a></li> |
+                    <li><a href="/companies">Companies</a></li> |
+                    <li><a href="#">Employees</a></li> 
+                </ul>
+            </div>
+            <div class="bodyDiv">
+                <h4>Company Employees</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Position</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                                <%if(data.employees.length > 0){%>
+                                    <%data.employees.forEach(function(val){%>
+                                        <tr>
+                                            <td>
+                                                <%=val.employeeFullName%>
+                                            </td>
+                                            <td >
+                                                <%=val.employeeRole%> <a href="/message/<%=val.employeeId%>" class="btn btn-primary employeeMsg" style="float: right">Send Message</a>
+                                            </td>
+                                        </tr>
+                                    <%})%>
+                                <%}
+                                else{%>
+                                    <tr>
+                                        <td>
+                                            <p>No Employee registered</p>
+                                        </td>
+                                    </tr>
+                                    <%}%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
